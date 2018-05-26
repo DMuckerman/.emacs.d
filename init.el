@@ -29,6 +29,7 @@
   ;; Set Cmd+V to paste for Emacs Mac Port
   ;; So macOS clipboard managers can still do their thing
   (global-set-key (kbd "s-v") 'yank)
+  (global-set-key (kbd "s-c") 'kill-ring-save)
   ;; Set default window size
   (add-to-list 'default-frame-alist '(height . 48))
   (add-to-list 'default-frame-alist '(width . 120)))
@@ -69,40 +70,6 @@
   :delight
   :config
   (global-undo-tree-mode))
-;; Enable evil-mode
-;;(use-package evil
-;;:ensure t
-;;:config
-;;(evil-mode 1))
-
-;; Set up ;; god-mode
-;; (use-package god-mode
-;;   :ensure t
-;;   :config
-;;   (setq god-exempt-major-modes nil)
-;;   (setq god-exempt-predicates nil)
-;;   (global-set-key (kbd "<escape>") 'god-local-mode)
-;;   (god-mode)
-
-;;   (defun my-update-cursor ()
-;;     (setq cursor-type (if (or god-local-mode buffer-read-only)
-;; 			  'box
-;; 			'bar)))
-
-;;   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-;;   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-
-;;   (define-key god-local-mode-map (kbd ".") 'repeat)
-;;   (define-key god-local-mode-map (kbd "i") 'god-local-mode)
-
-;;   (define-key god-local-mode-map [remap self-insert-command] 'my-god-mode-self-insert)
-
-;;   (defun my-god-mode-self-insert ()
-;;     (interactive)
-;;     (if (and (bolp)
-;; 	     (eq major-mode 'org-mode))
-;; 	(call-interactively 'org-self-insert-command)
-;;       (call-interactively 'god-mode-self-insert))))
 
 ;; Powerline settings
 (load "~/.emacs.d/powerline.el")
@@ -307,6 +274,7 @@
 ;;                     "/su::")
 ;; 		  buffer-file-name))))
 ;;     (find-alternate-file file-name)))
+
 (use-package php-mode
   :ensure t)
 

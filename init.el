@@ -278,5 +278,44 @@
 (use-package php-mode
   :ensure t)
 
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :ensure t
+  :config
+  (setq rust-format-on-save t))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package flycheck-inline
+  :ensure t
+  :config
+  (with-eval-after-load 'flycheck
+    (flycheck-inline-mode)))
+
+(use-package flycheck-rust
+  :ensure t
+  :config
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
+(use-package racer
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode))
+
+(use-package cargo
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook #'cargo-minor-mode))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook #'smartparens-mode))
+
 (setq tramp-default-method "ssh")
 (server-start)
